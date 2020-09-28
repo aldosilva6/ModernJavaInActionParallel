@@ -1,7 +1,7 @@
 package br.com.modernjavaaction;
 
 import java.util.concurrent.TimeUnit;
-import java.util.stream.Stream;
+import java.util.stream.LongStream;
 
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.BenchmarkMode;
@@ -25,13 +25,15 @@ public class ParallelStreamBenchmark {
 	/*
 	 * public long sequentialSum() { return Stream.iterate(1L, i -> i +
 	 * 1).limit(N).reduce(0L, Long::sum); }
-	 */
-	/*
+	 * 
 	 * public long iterativeSum() { long result = 0; for (long i = 1L; i <= N; i++)
 	 * { result += i; } return result; }
+	 * 
+	 * public long parallelSum() { return Stream.iterate(1L, i -> i +
+	 * 1).limit(N).parallel().reduce(0L, Long::sum); }
 	 */
-	public long parallelSum() {
-		return Stream.iterate(1L, i -> i + 1).limit(N).parallel().reduce(0L, Long::sum);
+	public long parallelRangedSum() {
+		return LongStream.rangeClosed(1, N).parallel().reduce(0L, Long::sum);
 	}
 
 	@TearDown(Level.Invocation)
