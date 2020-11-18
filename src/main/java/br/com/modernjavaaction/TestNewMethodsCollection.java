@@ -45,7 +45,7 @@ public class TestNewMethodsCollection {
 
 		transactions.forEach(transaction -> System.out.println(transaction.getReferenceCode()));
 
-		List<String> nomes = new ArrayList(Arrays.asList("aldo", "paulo", "manu"));
+		List<String> nomes = new ArrayList<String>(Arrays.asList("aldo", "paulo", "manu"));
 		nomes.replaceAll(nome -> nome.toUpperCase());
 
 		nomes.forEach(System.out::println);
